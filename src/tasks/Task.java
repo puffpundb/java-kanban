@@ -8,13 +8,12 @@ public class Task {
     protected String title;
     protected String description;
     protected Status status;
-    protected final Integer id;
+    protected Integer id;
 
-    public Task (String title, String description, Integer id) {
+    public Task (String title, String description) {
         this.title = title;
         this.description = description;
         this.status = Status.NEW;
-        this.id = id;
     }
 
     public String getTitle() {
@@ -43,6 +42,10 @@ public class Task {
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override

@@ -1,15 +1,18 @@
 package tasks;
 
 public class SubTask extends Task {
-    private final Integer epicId;
+    private Integer epicId;
 
-    public SubTask(String title, String description, Integer id, Integer epicId) {
-        super(title, description, id);
-        this.epicId = epicId;
+    public SubTask(String title, String description) {
+        super(title, description);
     }
 
     public Integer getEpicId() {
         return epicId;
+    }
+
+    public void setEpicId(Integer epicId) {
+        this.epicId = epicId;
     }
 
     @Override

@@ -6,8 +6,8 @@ import java.util.Objects;
 public class Epic extends Task {
     private final ArrayList<Integer> subsId;
 
-    public Epic(String title, String description, Integer id) {
-        super(title, description, id);
+    public Epic(String title, String description) {
+        super(title, description);
         this.subsId = new ArrayList<>();
     }
 
@@ -20,16 +20,7 @@ public class Epic extends Task {
     }
 
     public void deleteSub(Integer id) {
-        int toDelete = 0;
-
-        for (Integer subId : subsId) {
-            if (Objects.equals(subId, id)) {
-                subsId.remove(toDelete);
-                return;
-            }
-
-            toDelete++;
-        }
+        subsId.remove(id);
     }
 
     @Override

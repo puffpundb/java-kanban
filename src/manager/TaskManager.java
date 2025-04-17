@@ -9,12 +9,12 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class TaskManager {
-    private static int globalId = 0;
+    private int globalId = 0;
     private final HashMap<Integer, Task> savedTasks = new HashMap<>();
     private final HashMap<Integer, SubTask> savedSubTasks = new HashMap<>();
     private final HashMap<Integer, Epic> savedEpics = new HashMap<>();
 
-    private static Integer generateId() {
+    private Integer generateId() {
         return globalId++;
     }
 
@@ -48,50 +48,49 @@ public class TaskManager {
         return savedSubTasks.get(id);
     }
 
-    public void createNewTask(String title, String description) {
-        Task newTask = new Task(title, description, generateId());
-
+    public void createNewTask(Task newTask) {
+        newTask.setId(generateId());
         savedTasks.put(newTask.getId(), newTask);
     }
 
-    public void createNewSubTask(String title, String description, Integer epicId) {
-        SubTask newSub = new SubTask(title, description, generateId(), epicId);
+    public void createNewSubTask(SubTask newSubTask, Integer epicId) {
+        newSubTask.setId(generateId());
+        newSubTask.setEpicId(epicId);
 
-        savedSubTasks.put(newSub.getId(), newSub);
-        savedEpics.get(epicId).putSubsId(newSub.getId());
-        updateEpic(epicId);
+        savedSubTasks.put(newSubTask.getId(), newSubTask);
+        if (savedEpics.containsKey(epicId)) {
+            savedEpics.get(epicId).putSubsId(newSubTask.getId());
+        } else {
+            return;
+        }
+        updateEpicStatus(epicId);
     }
 
-    public void createNewEpic(String title, String description) {
-        Epic newEpic = new Epic(title, description, generateId());
+    public void createNewEpic(Epic newEpic) {
+        newEpic.setId(generateId());
 
         savedEpics.put(newEpic.getId(), newEpic);
     }
 
-    public void updateTask(Integer taskId) {
-        Task currentTask = savedTasks.get(taskId);
+    public void updateTask(Task task) {
+        savedTasks.put(task.getId(), task);
 
-        if (currentTask.getStatus() == Status.NEW) {
-            currentTask.setStatus(Status.DONE);
-        } else {
-            currentTask.setStatus(Status.NEW);
-        }
     }
 
-    public void updateSubTask(Integer subTaskId) {
-        SubTask currentSubTask = savedSubTasks.get(subTaskId);
+    public void updateSubTask(SubTask subTask) {
+        savedSubTasks.put(subTask.getId(), subTask);
 
-        if (currentSubTask.getStatus() == Status.NEW) {
-            currentSubTask.setStatus(Status.DONE);
-        } else {
-            currentSubTask.setStatus(Status.NEW);
-        }
-
-        updateEpic(currentSubTask.getEpicId());
+        updateEpicStatus(subTask.getEpicId());
     }
 
-    public void updateEpic(Integer epicId) {
-        Epic epic = savedEpics.get(epicId);
+    public void updateEpic(Epic epic) {
+        savedEpics.put(epic.getId(), epic);
+
+        updateEpicStatus(epic.getId());
+    }
+
+    public void updateEpicStatus(Integer id) {
+        Epic epic = savedEpics.get(id);
 
         if (epic.getSubsId().isEmpty()) {
             epic.setStatus(Status.NEW);
@@ -118,8 +117,6 @@ public class TaskManager {
         } else {
             epic.setStatus(Status.IN_PROGRESS);
         }
-
-        savedEpics.put(epic.getId(), epic);
     }
 
     public void deleteTask(Integer id) {
@@ -129,18 +126,9 @@ public class TaskManager {
     public void deleteSubTask(Integer id) {
         SubTask currentSubTask = savedSubTasks.get(id);
         Epic currentEpic = savedEpics.get(currentSubTask.getEpicId());
-        int toDelete = 0;
 
-        for (Integer epicSub : currentEpic.getSubsId()) {
-            if (Objects.equals(epicSub, id)) {
-                currentEpic.deleteSub(toDelete);
-                break;
-            }
-
-            toDelete++;
-        }
-
-        updateEpic(currentSubTask.getEpicId());
+        currentEpic.deleteSub(id);
+        updateEpicStatus(currentSubTask.getEpicId());
 
         savedSubTasks.remove(id);
     }
@@ -164,12 +152,5 @@ public class TaskManager {
         }
 
         return taskList;
-    }
-
-    @Override
-    public String toString() {
-        return "TaskManager{" +
-                "savedTasks=" + savedTasks +
-                '}';
     }
 }
