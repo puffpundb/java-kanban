@@ -1,7 +1,6 @@
 package tasks;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Epic extends Task {
     private final ArrayList<Integer> subsId;
@@ -16,7 +15,7 @@ public class Epic extends Task {
     }
 
     public void putSubsId(Integer id) {
-        this.subsId.add(id);
+        subsId.add(id);
     }
 
     public void deleteSub(Integer id) {

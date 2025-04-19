@@ -15,11 +15,11 @@ public class Main {
         taskManager.createNewTask(new Task("Порезать сыр", "жестко порезать")); //1
 
         taskManager.createNewEpic(new Epic("Помыть посуду", "перед гостями")); //2
-        taskManager.createNewSubTask(new SubTask("Помыть вилки","опять же жестко"), 2); //3
-        taskManager.createNewSubTask(new SubTask("Помыть ложки","нежнее чем вилки"), 2); //4
+        taskManager.createNewSubTask(new SubTask("Помыть вилки","опять же жестко", 2)); //3
+        taskManager.createNewSubTask(new SubTask("Помыть ложки","нежнее чем вилки",2 )); //4
 
         taskManager.createNewEpic(new Epic("Помыть пол", "не везде")); //5
-        taskManager.createNewSubTask(new SubTask("Помыть пол в гостиной", "и под диваном"), 5); //6
+        taskManager.createNewSubTask(new SubTask("Помыть пол в гостиной", "и под диваном", 5)); //6
 
         System.out.println(taskManager.getAllTasks());
         System.out.println(taskManager.getAllEpics());

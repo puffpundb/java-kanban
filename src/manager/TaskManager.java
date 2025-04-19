@@ -6,7 +6,6 @@ import tasks.SubTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class TaskManager {
     private int globalId = 0;
@@ -32,7 +31,13 @@ public class TaskManager {
 
     public void clearAllTasks() {
         savedTasks.clear();
+    }
+
+    public void clearAllSubTasks() {
         savedSubTasks.clear();
+    }
+
+    public void clearAllEpics() {
         savedEpics.clear();
     }
 
@@ -53,17 +58,14 @@ public class TaskManager {
         savedTasks.put(newTask.getId(), newTask);
     }
 
-    public void createNewSubTask(SubTask newSubTask, Integer epicId) {
+    public void createNewSubTask(SubTask newSubTask) {
         newSubTask.setId(generateId());
-        newSubTask.setEpicId(epicId);
 
-        savedSubTasks.put(newSubTask.getId(), newSubTask);
-        if (savedEpics.containsKey(epicId)) {
-            savedEpics.get(epicId).putSubsId(newSubTask.getId());
-        } else {
-            return;
+        if (savedEpics.containsKey(newSubTask.getEpicId())) {
+            savedSubTasks.put(newSubTask.getId(), newSubTask);
+            savedEpics.get(newSubTask.getEpicId()).putSubsId(newSubTask.getId());
+            updateEpicStatus(newSubTask.getEpicId());
         }
-        updateEpicStatus(epicId);
     }
 
     public void createNewEpic(Epic newEpic) {
@@ -74,7 +76,6 @@ public class TaskManager {
 
     public void updateTask(Task task) {
         savedTasks.put(task.getId(), task);
-
     }
 
     public void updateSubTask(SubTask subTask) {
@@ -89,7 +90,7 @@ public class TaskManager {
         updateEpicStatus(epic.getId());
     }
 
-    public void updateEpicStatus(Integer id) {
+    private void updateEpicStatus(Integer id) {
         Epic epic = savedEpics.get(id);
 
         if (epic.getSubsId().isEmpty()) {
@@ -103,17 +104,21 @@ public class TaskManager {
 
         for (Integer subId : epic.getSubsId()) {
             SubTask subTask = getSubTaskById(subId);
+
             if (subTask.getStatus() == Status.DONE) {
                 doneCounter++;
-            } else {
+
+            } else if (subTask.getStatus() == Status.NEW) {
                 newCounter++;
             }
         }
 
         if (doneCounter == allSubsCount) {
             epic.setStatus(Status.DONE);
+
         } else if (newCounter == allSubsCount) {
             epic.setStatus(Status.NEW);
+
         } else {
             epic.setStatus(Status.IN_PROGRESS);
         }
