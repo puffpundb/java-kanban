@@ -34,11 +34,16 @@ public class TaskManager {
     }
 
     public void clearAllSubTasks() {
+        for (Epic currnetEpic : savedEpics.values()) {
+            currnetEpic.getSubsId().clear();
+        }
+
         savedSubTasks.clear();
     }
 
     public void clearAllEpics() {
         savedEpics.clear();
+        savedSubTasks.clear();
     }
 
     public Epic getEpicById(Integer id) {
