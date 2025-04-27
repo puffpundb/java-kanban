@@ -1,6 +1,6 @@
 package tasks;
 
-import manager.Status;
+import managers.Status;
 
 import java.util.Objects;
 
@@ -14,6 +14,17 @@ public class Task {
         this.title = title;
         this.description = description;
         this.status = Status.NEW;
+    }
+
+    private Task (Task task) {
+        this.title = task.getTitle();
+        this.description = task.getDescription();
+        this.status = task.getStatus();
+        this.id = task.getId();
+    }
+
+    public Task copy() {
+        return new Task(this);
     }
 
     public String getTitle() {

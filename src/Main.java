@@ -1,5 +1,5 @@
-import manager.Status;
-import manager.TaskManager;
+import managers.Status;
+import managers.InMemoryTaskManager;
 
 import tasks.Task;
 import tasks.SubTask;
@@ -7,53 +7,59 @@ import tasks.Epic;
 
 public class Main {
     public static void main(String[] args) {
-        TaskManager taskManager = new TaskManager();
+        InMemoryTaskManager inMemoryTaskManager = new InMemoryTaskManager();
 
         System.out.println("Поехали!");
 
-        taskManager.createNewTask(new Task("Почистить рыбу", "жестко почистить")); //0
-        taskManager.createNewTask(new Task("Порезать сыр", "жестко порезать")); //1
+        inMemoryTaskManager.createNewTask(new Task("Почистить рыбу", "жестко почистить")); //0
+        inMemoryTaskManager.createNewTask(new Task("Порезать сыр", "жестко порезать")); //1
 
-        taskManager.createNewEpic(new Epic("Помыть посуду", "перед гостями")); //2
-        taskManager.createNewSubTask(new SubTask("Помыть вилки","опять же жестко", 2)); //3
-        taskManager.createNewSubTask(new SubTask("Помыть ложки","нежнее чем вилки",2 )); //4
+        inMemoryTaskManager.createNewEpic(new Epic("Помыть посуду", "перед гостями")); //2
+        inMemoryTaskManager.createNewSubTask(new SubTask("Помыть вилки","опять же жестко", 2)); //3
+        inMemoryTaskManager.createNewSubTask(new SubTask("Помыть ложки","нежнее чем вилки",2 )); //4
 
-        taskManager.createNewEpic(new Epic("Помыть пол", "не везде")); //5
-        taskManager.createNewSubTask(new SubTask("Помыть пол в гостиной", "и под диваном", 5)); //6
+        inMemoryTaskManager.createNewEpic(new Epic("Помыть пол", "не везде")); //5
+        inMemoryTaskManager.createNewSubTask(new SubTask("Помыть пол в гостиной", "и под диваном", 5)); //6
 
-        System.out.println(taskManager.getAllTasks());
-        System.out.println(taskManager.getAllEpics());
-        System.out.println(taskManager.getAllSubTasks());
+        System.out.println(inMemoryTaskManager.getAllTasks());
+        System.out.println(inMemoryTaskManager.getAllEpics());
+        System.out.println(inMemoryTaskManager.getAllSubTasks());
 
-        Task currentTask = taskManager.getTaskById(0);
+        Task currentTask = inMemoryTaskManager.getTaskById(0);
         currentTask.setStatus(Status.DONE);
-        taskManager.updateTask(currentTask);
+        inMemoryTaskManager.updateTask(currentTask);
 
-        SubTask currentSub = taskManager.getSubTaskById(6);
+        SubTask currentSub = inMemoryTaskManager.getSubTaskById(6);
         currentSub.setStatus(Status.DONE);
-        taskManager.updateSubTask(currentSub);
-        currentSub = taskManager.getSubTaskById(4);
+        inMemoryTaskManager.updateSubTask(currentSub);
+        currentSub = inMemoryTaskManager.getSubTaskById(4);
         currentSub.setStatus(Status.DONE);
-        taskManager.updateSubTask(currentSub);
+        inMemoryTaskManager.updateSubTask(currentSub);
 
         System.out.println();
-        System.out.println(taskManager.getAllTasks());
-        System.out.println(taskManager.getAllEpics());
-        System.out.println(taskManager.getAllSubTasks());
+        System.out.println(inMemoryTaskManager.getAllTasks());
+        System.out.println(inMemoryTaskManager.getAllEpics());
+        System.out.println(inMemoryTaskManager.getAllSubTasks());
 
-        taskManager.deleteTask(0);
-        taskManager.deleteEpic(2);
-
-        System.out.println();
-        System.out.println(taskManager.getAllTasks());
-        System.out.println(taskManager.getAllEpics());
-        System.out.println(taskManager.getAllSubTasks());
-
-        taskManager.clearAllSubTasks();
+        inMemoryTaskManager.deleteTask(0);
+        inMemoryTaskManager.deleteEpic(2);
 
         System.out.println();
-        System.out.println(taskManager.getAllTasks());
-        System.out.println(taskManager.getAllEpics());
-        System.out.println(taskManager.getAllSubTasks());
+        System.out.println(inMemoryTaskManager.getAllTasks());
+        System.out.println(inMemoryTaskManager.getAllEpics());
+        System.out.println(inMemoryTaskManager.getAllSubTasks());
+
+        inMemoryTaskManager.clearAllSubTasks();
+
+        System.out.println();
+        System.out.println(inMemoryTaskManager.getAllTasks());
+        System.out.println(inMemoryTaskManager.getAllEpics());
+        System.out.println(inMemoryTaskManager.getAllSubTasks());
+
+        System.out.println(inMemoryTaskManager.getTaskById(0));
+        System.out.println(inMemoryTaskManager.getHistory());
+        inMemoryTaskManager.getTaskById(0).setTitle("Новый тайтл");
+        System.out.println(inMemoryTaskManager.getHistory());
+        System.out.println(inMemoryTaskManager.getTaskById(0));
     }
 }
