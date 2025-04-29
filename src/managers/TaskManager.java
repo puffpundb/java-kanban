@@ -38,8 +38,6 @@ public interface TaskManager {
 
     void updateEpic(Epic epic);
 
-    void updateEpicStatus(Integer id);
-
     void deleteTask(Integer id);
 
     void deleteSubTask(Integer id);
@@ -47,4 +45,6 @@ public interface TaskManager {
     void deleteEpic(Integer id);
 
     ArrayList<SubTask> getEpicSubs(Integer id);
+
+    public ArrayList<Task> getHistory();
 }

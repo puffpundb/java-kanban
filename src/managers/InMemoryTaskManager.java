@@ -12,41 +12,29 @@ public class InMemoryTaskManager implements TaskManager {
     private final HashMap<Integer, Task> savedTasks = new HashMap<>();
     private final HashMap<Integer, SubTask> savedSubTasks = new HashMap<>();
     private final HashMap<Integer, Epic> savedEpics = new HashMap<>();
-    private final HistoryManager<Task> historyManager = Managers.getDefaultHistory();
+    private final HistoryManager historyManager = Managers.getDefaultHistory();
 
     private Integer generateId() {
         return globalId++;
     }
 
+    @Override
     public ArrayList<Task> getHistory() {
         return historyManager.getHistory();
     }
 
     @Override
     public ArrayList<Task> getAllTasks() {
-        for (Task currentTask : savedTasks.values()) {
-            historyManager.addToHistory(currentTask);
-        }
-
         return new ArrayList<>(savedTasks.values());
     }
 
     @Override
     public ArrayList<Task> getAllSubTasks() {
-        for (Task currentSubTask : savedSubTasks.values()) {
-            historyManager.addToHistory(currentSubTask);
-
-        }
-
         return new ArrayList<>(savedSubTasks.values());
     }
 
     @Override
     public ArrayList<Task> getAllEpics() {
-        for (Task currentEpic : savedEpics.values()) {
-            historyManager.addToHistory(currentEpic);
-        }
-
         return new ArrayList<>(savedEpics.values());
     }
 
@@ -99,9 +87,8 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void createNewSubTask(SubTask newSubTask) {
-        newSubTask.setId(generateId());
-
         if (savedEpics.containsKey(newSubTask.getEpicId())) {
+            newSubTask.setId(generateId());
             savedSubTasks.put(newSubTask.getId(), newSubTask);
             savedEpics.get(newSubTask.getEpicId()).putSubsId(newSubTask.getId());
             updateEpicStatus(newSubTask.getEpicId());
@@ -134,8 +121,7 @@ public class InMemoryTaskManager implements TaskManager {
         updateEpicStatus(epic.getId());
     }
 
-    @Override
-    public void updateEpicStatus(Integer id) {
+    private void updateEpicStatus(Integer id) {
         Epic epic = savedEpics.get(id);
 
         if (epic.getSubsId().isEmpty()) {
