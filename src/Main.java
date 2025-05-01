@@ -1,4 +1,4 @@
-import managers.Status;
+import tasks.Status;
 import managers.InMemoryTaskManager;
 
 import tasks.Task;

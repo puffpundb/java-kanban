@@ -8,7 +8,6 @@ public class InMemoryHistoryManager implements HistoryManager {
     private final ArrayList<Task> viewHistory = new ArrayList<>();
     private final int MAX_HISTORY_SIZE = 10;
 
-
     @Override
     public void addToHistory(Task task) {
         if (task == null) return;
@@ -23,6 +22,6 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     @Override
     public ArrayList<Task> getHistory() {
-        return viewHistory;
+        return new ArrayList<>(viewHistory);
     }
 }

@@ -1,6 +1,7 @@
 package managers;
 
 import tasks.Epic;
+import tasks.Status;
 import tasks.Task;
 import tasks.SubTask;
 
@@ -60,23 +61,27 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public Epic getEpicById(Integer id) {
-        historyManager.addToHistory(savedEpics.get(id));
+        Epic currentEpic = savedEpics.get(id);
+        historyManager.addToHistory(currentEpic);
 
-        return savedEpics.get(id);
+        return currentEpic;
+
     }
 
     @Override
     public Task getTaskById(Integer id) {
-        historyManager.addToHistory(savedTasks.get(id));
+        Task currentTask = savedTasks.get(id);
+        historyManager.addToHistory(currentTask);
 
-        return savedTasks.get(id);
+        return currentTask;
     }
 
     @Override
     public SubTask getSubTaskById(Integer id) {
-        historyManager.addToHistory(savedSubTasks.get(id));
+        SubTask currentSubTask = savedSubTasks.get(id);
+        historyManager.addToHistory(currentSubTask);
 
-        return savedSubTasks.get(id);
+        return currentSubTask;
     }
 
     @Override
