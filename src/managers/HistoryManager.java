@@ -8,4 +8,6 @@ public interface HistoryManager {
     void addToHistory(Task task);
 
     ArrayList<Task> getHistory();
+
+    void remove(Integer id);
 }

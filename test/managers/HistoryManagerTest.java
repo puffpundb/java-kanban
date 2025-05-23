@@ -8,6 +8,8 @@ import tasks.Status;
 import tasks.SubTask;
 import tasks.Task;
 
+import java.util.ArrayList;
+
 class HistoryManagerTest {
     public static HistoryManager historyManager;
     public static Task currentTask;
@@ -48,7 +50,6 @@ class HistoryManagerTest {
 
         Assertions.assertNotEquals(currentEpic, historyManager.getHistory().get(1));
         Assertions.assertNotEquals(currentEpic.getSubsId(), ((Epic) historyManager.getHistory().get(1)).getSubsId());
-        // Вторую проверку сделал, потому что в прошлом ТЗ было сказано не переопределять equals и поле subsId в нем не проверяется
     }
 
     @Test
@@ -61,17 +62,12 @@ class HistoryManagerTest {
     }
 
     @Test
-    public void shouldHistoryDontOverSave() {
-        historyManager.addToHistory(new Task("new", "new"));
-        historyManager.addToHistory(new Task("new", "new"));
-        historyManager.addToHistory(new Task("new", "new"));
-        historyManager.addToHistory(new Task("new", "new"));
-        historyManager.addToHistory(new Task("new", "new"));
-        historyManager.addToHistory(new Task("new", "new"));
-        historyManager.addToHistory(new Task("new", "new"));
-        historyManager.addToHistory(new Task("new", "new"));
-        historyManager.addToHistory(new Task("new", "new"));
+    public void shouldHistoryManagerReturnRightHistoryList() {
+        ArrayList<Task> rightList = new ArrayList<>();
+        rightList.add(currentTask);
+        rightList.add(currentEpic);
+        rightList.add(currentSubTask);
 
-        Assertions.assertEquals(10, historyManager.getHistory().size());
+        Assertions.assertEquals(rightList, historyManager.getHistory());
     }
 }
