@@ -5,7 +5,6 @@ import tasks.Task;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class InMemoryHistoryManager implements HistoryManager {
     private final Map<Integer, Node> viewHistory = new LinkedHashMap<>();
@@ -21,6 +20,7 @@ public class InMemoryHistoryManager implements HistoryManager {
         if (tail == null) {
             tail = newNode;
             tail.setPrev(head);
+            head.setNext(tail);
 
         } else {
             newNode.setPrev(tail);
@@ -88,43 +88,3 @@ public class InMemoryHistoryManager implements HistoryManager {
     }
 }
 
-class Node {
-    private Task task;
-    private Node prev;
-    private Node next;
-
-    public Node(Task task) {
-        this.task = task;
-    }
-
-    public Task getTask() {
-        return task;
-    }
-
-    public void setTask(Task task) {
-        this.task = task;
-    }
-
-    public Node getPrev() {
-        return prev;
-    }
-
-    public void setPrev(Node prev) {
-        this.prev = prev;
-    }
-
-    public Node getNext() {
-        return next;
-    }
-
-    public void setNext(Node next) {
-        this.next = next;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Node node = (Node) o;
-        return Objects.equals(task, node.task) && Objects.equals(prev, node.prev) && Objects.equals(next, node.next);
-    }
-}
