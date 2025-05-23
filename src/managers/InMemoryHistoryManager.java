@@ -93,7 +93,7 @@ class Node {
     private Node prev;
     private Node next;
 
-    public Node (Task task) {
+    public Node(Task task) {
         this.task = task;
     }
 
