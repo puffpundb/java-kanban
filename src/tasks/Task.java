@@ -8,13 +8,13 @@ public class Task {
     protected Status status;
     protected Integer id;
 
-    public Task (String title, String description) {
+    public Task(String title, String description) {
         this.title = title;
         this.description = description;
         this.status = Status.NEW;
     }
 
-    private Task (Task task) {
+    private Task(Task task) {
         this.title = task.getTitle();
         this.description = task.getDescription();
         this.status = task.getStatus();
