@@ -12,21 +12,13 @@ public class InMemoryHistoryManager implements HistoryManager {
     private Node tail;
 
     private void linkLast(Node newNode) {
-        if (head == null) {
-            head = newNode;
-            return;
-        }
-
         if (tail == null) {
-            tail = newNode;
-            tail.setPrev(head);
-            head.setNext(tail);
-
+            head = newNode;
+            tail = head;
         } else {
-            newNode.setPrev(tail);
-            tail.setNext(newNode);
+            tail.next = newNode;
+            newNode.prev = tail;
             tail = newNode;
-
         }
     }
 
@@ -36,9 +28,7 @@ public class InMemoryHistoryManager implements HistoryManager {
 
         Integer currentTaskId = task.getId();
 
-        if (viewHistory.containsKey(currentTaskId)) {
-            remove(currentTaskId);
-        }
+        remove(currentTaskId);
 
         Node newNode = new Node(task.copy());
         linkLast(newNode);
@@ -50,12 +40,10 @@ public class InMemoryHistoryManager implements HistoryManager {
     public ArrayList<Task> getHistory() {
         ArrayList<Task> history = new ArrayList<>();
 
-        if (viewHistory.isEmpty()) return history;
-
         Node currentNode = head;
         while (currentNode != null) {
-            history.add(currentNode.getTask());
-            currentNode = currentNode.getNext();
+            history.add(currentNode.task);
+            currentNode = currentNode.next;
 
         }
 
@@ -64,27 +52,40 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     @Override
     public void remove(Integer id) {
-        if (viewHistory.get(id).equals(head)) {
-            Node aheadNode = head.getNext();
-            aheadNode.setPrev(null);
+        if (!viewHistory.containsKey(id)) return; // Здесь не уверен. Вроде, если у нас head/tail.next/prev == null,
+        // значит и в истории ничего нет и исключений далее в методе не будет, т.к. тут мы вернулись из метода ни с чем.
+
+        if (viewHistory.get(id) == head) {
+            Node aheadNode = head.next;
+            aheadNode.prev = null;
             head = aheadNode;
             return;
         }
 
-        if (viewHistory.get(id).equals(tail)) {
-            Node prevNode = tail.getPrev();
-            prevNode.setNext(null);
+        if (viewHistory.get(id) == tail) {
+            Node prevNode = tail.prev;
+            prevNode.next = null;
             tail = prevNode;
             return;
         }
 
-        Node prevTask = viewHistory.get(id).getPrev();
-        Node nextTask = viewHistory.get(id).getNext();
+        Node prevTask = viewHistory.get(id).prev;
+        Node nextTask = viewHistory.get(id).next;
 
-        prevTask.setNext(nextTask);
-        nextTask.setPrev(prevTask);
+        prevTask.next = nextTask;
+        nextTask.prev = prevTask;
 
         viewHistory.remove(id);
+    }
+
+    private static class Node {
+        private final Task task;
+        private Node prev;
+        private Node next;
+
+        public Node(Task task) {
+            this.task = task;
+        }
     }
 }
 

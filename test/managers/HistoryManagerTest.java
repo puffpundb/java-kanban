@@ -70,4 +70,75 @@ class HistoryManagerTest {
 
         Assertions.assertEquals(rightList, historyManager.getHistory());
     }
+
+    @Test
+    public void shouldHistoryManagerDeleteDuplicates() {
+        ArrayList<Task> rightList = new ArrayList<>();
+        rightList.add(currentEpic);
+        rightList.add(currentSubTask);
+        rightList.add(currentTask);
+
+        HistoryManager newHistoryManager = Managers.getDefaultHistory();
+        newHistoryManager.addToHistory(currentTask);
+        newHistoryManager.addToHistory(currentEpic);
+        newHistoryManager.addToHistory(currentSubTask);
+        newHistoryManager.addToHistory(currentTask);
+
+        Assertions.assertEquals(rightList, newHistoryManager.getHistory());
+    }
+
+    @Test
+    public void shouldHistoryManagerRightRemoveHead() {
+        ArrayList<Task> rightList = new ArrayList<>();
+        rightList.add(currentEpic);
+        rightList.add(currentSubTask);
+
+        HistoryManager newHistoryManager = Managers.getDefaultHistory();
+        newHistoryManager.addToHistory(currentTask);
+        newHistoryManager.addToHistory(currentEpic);
+        newHistoryManager.addToHistory(currentSubTask);
+        newHistoryManager.remove(0);
+
+        Assertions.assertEquals(rightList, newHistoryManager.getHistory());
+    }
+
+    @Test
+    public void shouldHistoryManagerRightRemoveTail() {
+        ArrayList<Task> rightList = new ArrayList<>();
+        rightList.add(currentTask);
+        rightList.add(currentEpic);
+
+        HistoryManager newHistoryManager = Managers.getDefaultHistory();
+        newHistoryManager.addToHistory(currentTask);
+        newHistoryManager.addToHistory(currentEpic);
+        newHistoryManager.addToHistory(currentSubTask);
+        newHistoryManager.remove(2);
+
+        Assertions.assertEquals(rightList, newHistoryManager.getHistory());
+    }
+
+    @Test
+    public void shouldHistoryManagerRightRemoveMiddle() {
+        ArrayList<Task> rightList = new ArrayList<>();
+        rightList.add(currentTask);
+        rightList.add(currentSubTask);
+
+        HistoryManager newHistoryManager = Managers.getDefaultHistory();
+        newHistoryManager.addToHistory(currentTask);
+        newHistoryManager.addToHistory(currentEpic);
+        newHistoryManager.addToHistory(currentSubTask);
+        newHistoryManager.remove(1);
+
+        Assertions.assertEquals(rightList, newHistoryManager.getHistory());
+    }
+
+    @Test
+    public void shouldHistoryManagerRightRemoveFromEmptyHistory() {
+        ArrayList<Task> rightList = new ArrayList<>();
+
+        HistoryManager newHistoryManager = Managers.getDefaultHistory();
+        newHistoryManager.remove(0);
+
+        Assertions.assertEquals(rightList, newHistoryManager.getHistory());
+    }
 }
