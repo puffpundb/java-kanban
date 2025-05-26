@@ -14,12 +14,14 @@ public class InMemoryHistoryManager implements HistoryManager {
     private void linkLast(Node newNode) {
         if (tail == null) {
             head = newNode;
-            tail = head;
+
         } else {
             tail.next = newNode;
             newNode.prev = tail;
-            tail = newNode;
+
         }
+
+        tail = newNode;
     }
 
     @Override
@@ -52,28 +54,29 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     @Override
     public void remove(Integer id) {
-        if (!viewHistory.containsKey(id)) return; // Здесь не уверен. Вроде, если у нас head/tail.next/prev == null,
-        // значит и в истории ничего нет и исключений далее в методе не будет, т.к. тут мы вернулись из метода ни с чем.
+        if (!viewHistory.containsKey(id)) return;
 
-        if (viewHistory.get(id) == head) {
+        if (head == tail) {
+            head = null;
+            tail = null;
+
+        } else if (viewHistory.get(id) == head) {
             Node aheadNode = head.next;
             aheadNode.prev = null;
             head = aheadNode;
-            return;
-        }
 
-        if (viewHistory.get(id) == tail) {
+        } else if (viewHistory.get(id) == tail) {
             Node prevNode = tail.prev;
             prevNode.next = null;
             tail = prevNode;
-            return;
+
+        } else {
+            Node prevTask = viewHistory.get(id).prev;
+            Node nextTask = viewHistory.get(id).next;
+
+            prevTask.next = nextTask;
+            nextTask.prev = prevTask;
         }
-
-        Node prevTask = viewHistory.get(id).prev;
-        Node nextTask = viewHistory.get(id).next;
-
-        prevTask.next = nextTask;
-        nextTask.prev = prevTask;
 
         viewHistory.remove(id);
     }

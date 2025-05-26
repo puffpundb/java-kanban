@@ -141,4 +141,27 @@ class HistoryManagerTest {
 
         Assertions.assertEquals(rightList, newHistoryManager.getHistory());
     }
+
+    @Test
+    public void shouldHistoryManagerRightRemoveOnlyOneTaskFromHistory() {
+        ArrayList<Task> rightList = new ArrayList<>();
+
+        HistoryManager newHistoryManager = Managers.getDefaultHistory();
+        newHistoryManager.addToHistory(currentTask);
+
+        newHistoryManager.remove(0);
+
+        Assertions.assertEquals(rightList, newHistoryManager.getHistory());
+    }
+
+    @Test
+    public void shouldHistoryManagerRightRemoveNoOneTaskFromHistory() {
+        ArrayList<Task> rightList = new ArrayList<>();
+
+        HistoryManager newHistoryManager = Managers.getDefaultHistory();
+
+        newHistoryManager.remove(0);
+
+        Assertions.assertEquals(rightList, newHistoryManager.getHistory());
+    }
 }
