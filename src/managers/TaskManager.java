@@ -47,4 +47,6 @@ public interface TaskManager {
     ArrayList<SubTask> getEpicSubs(Integer id);
 
     public ArrayList<Task> getHistory();
+
+    public void putTaskToSave(Task task);
 }

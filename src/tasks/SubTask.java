@@ -1,5 +1,7 @@
 package tasks;
 
+import managers.Types;
+
 public class SubTask extends Task {
     private final Integer epicId;
 
@@ -24,6 +26,10 @@ public class SubTask extends Task {
         return epicId;
     }
 
+    @Override
+    public Types getType() {
+        return Types.SUBTASK;
+    }
 
     @Override
     public String toString() {

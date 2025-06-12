@@ -199,4 +199,13 @@ public class InMemoryTaskManager implements TaskManager {
         return taskList;
     }
 
+    @Override
+    public void putTaskToSave(Task task) {
+        switch (task.getType()) {
+            case TASK -> updateTask(task);
+            case EPIC -> updateEpic((Epic) task);
+            case SUBTASK -> updateSubTask((SubTask) task);
+
+        }
+    }
 }

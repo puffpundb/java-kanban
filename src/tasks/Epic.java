@@ -1,5 +1,7 @@
 package tasks;
 
+import managers.Types;
+
 import java.util.ArrayList;
 
 public class Epic extends Task {
@@ -33,6 +35,11 @@ public class Epic extends Task {
 
     public void deleteSub(Integer id) {
         subsId.remove(id);
+    }
+
+    @Override
+    public Types getType() {
+        return Types.EPIC;
     }
 
     @Override

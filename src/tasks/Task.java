@@ -1,5 +1,7 @@
 package tasks;
 
+import managers.Types;
+
 import java.util.Objects;
 
 public class Task {
@@ -55,6 +57,10 @@ public class Task {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Types getType() {
+        return Types.TASK;
     }
 
     @Override
