@@ -48,5 +48,4 @@ public interface TaskManager {
 
     public ArrayList<Task> getHistory();
 
-    public void putTaskToSave(Task task);
 }

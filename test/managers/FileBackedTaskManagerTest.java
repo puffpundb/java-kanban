@@ -10,6 +10,7 @@ import tasks.Task;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 
@@ -192,33 +193,105 @@ class FileBackedTaskManagerTest {
     }
 
     @Test
-    public void shouldTaskManagerRightSaveSubInFile() {
-        SubTask rightSub = new SubTask("4", "4", 3);
-        rightSub.setId(4);
+    public void shouldTaskManagerRightSaveSubInFile() throws IOException {
+        Path tempFile = Files.createTempFile("Sub", ".csv");
 
-        FileBackedTaskManager managerForTest = FileBackedTaskManager.loadFromFile(filePath.toPath());
-        SubTask subForAssert = managerForTest.getSubTaskById(4);
+        FileBackedTaskManager currentManager = Managers.getFileBackedTaskManager(tempFile);
+        currentManager.createNewEpic(new Epic("0", "0"));
 
-        Assertions.assertEquals(rightSub, subForAssert);
+        SubTask rightSub = new SubTask("1", "1", 0);
+        rightSub.setId(1);
+
+        currentManager.createNewSubTask(rightSub);
+
+        FileBackedTaskManager managerForTest = FileBackedTaskManager.loadFromFile(tempFile);
+
+        Assertions.assertEquals(rightSub, managerForTest.getSubTaskById(1));
     }
 
     @Test
     public void shouldTaskManagerRightSaveEmptyFile() throws IOException {
         File emptyFile = File.createTempFile("testEmpty", ".csv");
         FileBackedTaskManager emptyManager = Managers.getFileBackedTaskManager(emptyFile.toPath());
-        emptyManager.save();
+        emptyManager.createNewTask(new Task("0", "0"));
+        emptyManager.deleteTask(0);
 
-        Assertions.assertEquals(0, Files.size(emptyFile.toPath()));
+        Assertions.assertEquals(1, Files.readAllLines(emptyFile.toPath()).size());
     }
 
     @Test
     public void shouldTaskManagerRightLoadEmptyFile() throws IOException {
         File emptyFile = File.createTempFile("testEmpty", ".csv");
         FileBackedTaskManager emptyManager = Managers.getFileBackedTaskManager(emptyFile.toPath());
-        emptyManager.save();
+        emptyManager.createNewTask(new Task("0", "0"));
+        emptyManager.deleteTask(0);
 
         FileBackedTaskManager secondEmptyManager = FileBackedTaskManager.loadFromFile(emptyFile.toPath());
 
-        Assertions.assertEquals(0, secondEmptyManager.getHistory().size());
+        ArrayList<Task> rightTaskList = new ArrayList<>();
+        ArrayList<Task> rightEpicList = new ArrayList<>();
+        ArrayList<Task> rightSubTaskList = new ArrayList<>();
+
+        Assertions.assertEquals(rightTaskList, secondEmptyManager.getAllTasks());
+        Assertions.assertEquals(rightEpicList, secondEmptyManager.getAllEpics());
+        Assertions.assertEquals(rightSubTaskList, secondEmptyManager.getAllSubTasks());
+    }
+
+    @Test
+    public void shouldTaskRightLoadFromFile() throws IOException {
+        File threeTasks = File.createTempFile("Three", ".csv");
+        FileBackedTaskManager threeTaskManager = Managers.getFileBackedTaskManager(threeTasks.toPath());
+
+        Task rightTask = new Task("0", "0");
+        rightTask.setId(0);
+
+        Epic rightEpic = new Epic("1", "1");
+        rightEpic.setId(1);
+
+        SubTask rightSub = new SubTask("2", "2", 1);
+        rightSub.setId(2);
+
+        threeTaskManager.createNewTask(rightTask);
+        threeTaskManager.createNewEpic(rightEpic);
+        threeTaskManager.createNewSubTask(rightSub);
+
+        FileBackedTaskManager loadedTaskManager = FileBackedTaskManager.loadFromFile(threeTasks.toPath());
+
+        Assertions.assertEquals(rightTask, loadedTaskManager.getTaskById(0));
+        Assertions.assertEquals(rightEpic, loadedTaskManager.getEpicById(1));
+        Assertions.assertEquals(rightSub, loadedTaskManager.getSubTaskById(2));
+    }
+
+    @Test
+    public void shouldTaskManagerRightClearAllTasks() throws IOException {
+        File zeroTasks = File.createTempFile("Zero", ".csv");
+        FileBackedTaskManager zeroTaskManager = Managers.getFileBackedTaskManager(zeroTasks.toPath());
+
+        Task rightTask = new Task("0", "0");
+        rightTask.setId(0);
+
+        Epic rightEpic = new Epic("1", "1");
+        rightEpic.setId(1);
+
+        SubTask rightSub = new SubTask("2", "2", 1);
+        rightSub.setId(2);
+
+        zeroTaskManager.createNewTask(rightTask);
+        zeroTaskManager.createNewEpic(rightEpic);
+        zeroTaskManager.createNewSubTask(rightSub);
+
+        zeroTaskManager.clearAllTasks();
+        zeroTaskManager.clearAllEpics();
+        zeroTaskManager.clearAllSubTasks();
+
+        ArrayList<Task> rightTaskList = new ArrayList<>();
+        ArrayList<Task> rightEpicList = new ArrayList<>();
+        ArrayList<Task> rightSubTaskList = new ArrayList<>();
+
+        FileBackedTaskManager loadedTaskManager = FileBackedTaskManager.loadFromFile(zeroTasks.toPath());
+
+        Assertions.assertEquals(rightTaskList, loadedTaskManager.getAllTasks());
+        Assertions.assertEquals(rightEpicList, loadedTaskManager.getAllEpics());
+        Assertions.assertEquals(rightSubTaskList, loadedTaskManager.getAllSubTasks());
     }
 }
