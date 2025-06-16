@@ -9,15 +9,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class InMemoryTaskManager implements TaskManager {
-    private int globalId = 0;
-    private final HashMap<Integer, Task> savedTasks = new HashMap<>();
-    private final HashMap<Integer, SubTask> savedSubTasks = new HashMap<>();
-    private final HashMap<Integer, Epic> savedEpics = new HashMap<>();
-    private final HistoryManager historyManager = Managers.getDefaultHistory();
+    protected int globalId = 0;
+    protected final HashMap<Integer, Task> savedTasks = new HashMap<>();
+    protected final HashMap<Integer, SubTask> savedSubTasks = new HashMap<>();
+    protected final HashMap<Integer, Epic> savedEpics = new HashMap<>();
+    protected final HistoryManager historyManager = Managers.getDefaultHistory();
 
     private Integer generateId() {
         return globalId++;
     }
+
+
 
     @Override
     public ArrayList<Task> getHistory() {
