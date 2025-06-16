@@ -19,8 +19,6 @@ public class InMemoryTaskManager implements TaskManager {
         return globalId++;
     }
 
-
-
     @Override
     public ArrayList<Task> getHistory() {
         return historyManager.getHistory();
@@ -128,7 +126,7 @@ public class InMemoryTaskManager implements TaskManager {
         updateEpicStatus(epic.getId());
     }
 
-    private void updateEpicStatus(Integer id) {
+    protected void updateEpicStatus(Integer id) {
         Epic epic = savedEpics.get(id);
 
         if (epic.getSubsId().isEmpty()) {

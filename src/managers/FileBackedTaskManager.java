@@ -13,7 +13,7 @@ import java.nio.file.Path;
 
 public class FileBackedTaskManager extends InMemoryTaskManager {
     private final Path fileToSave;
-    private static final String header = "id,type,name,status,description,epic";
+    private static final String HEADER = "id,type,name,status,description,epic";
 
     public FileBackedTaskManager(Path fileToSave) {
         this.fileToSave = fileToSave;
@@ -25,7 +25,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
 
     private void save() {
         try (BufferedWriter writer = Files.newBufferedWriter(fileToSave)) {
-            writer.write(header);
+            writer.write(HEADER);
             writer.newLine();
 
             for (Task task : getAllTasks()) {
@@ -59,7 +59,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
             while (reader.ready()) {
                 taskLine = reader.readLine();
 
-                if (taskLine.contains(header)) continue;
+                if (taskLine.contains(HEADER)) continue;
 
                 Task currentTask = Converter.taskFromString(taskLine);
                 if (currentTask.getId() > maxId) maxId = currentTask.getId();
@@ -149,11 +149,16 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         save();
     }
 
-    public void putTaskToSave(Task task) { //???
+    private void putTaskToSave(Task task) {
         switch (task.getType()) {
             case TASK -> savedTasks.put(task.getId(), task);
             case EPIC -> savedEpics.put(task.getId(),(Epic) task);
-            case SUBTASK -> savedSubTasks.put(task.getId(), (SubTask) task);
+            case SUBTASK -> {
+                SubTask newSubTask = (SubTask) task;
+                savedSubTasks.put(newSubTask.getId(), newSubTask);
+                savedEpics.get(newSubTask.getEpicId()).putSubsId(newSubTask.getId());
+                updateEpicStatus(newSubTask.getEpicId());
+            }
 
         }
     }
