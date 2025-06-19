@@ -8,7 +8,13 @@ import tasks.Status;
 import tasks.SubTask;
 import tasks.Task;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+
+import static managers.FileBackedTaskManagerTest.date;
+import static managers.FileBackedTaskManagerTest.time;
 
 class HistoryManagerTest {
     public static HistoryManager historyManager;
@@ -19,9 +25,9 @@ class HistoryManagerTest {
     @BeforeAll
     public static void beforeAll() {
         historyManager = Managers.getDefaultHistory();
-        currentTask = new Task("0", "0");
+        currentTask = new Task("0", "0", Duration.ofMinutes(1), LocalDateTime.of(date, time));
         currentEpic = new Epic("1", "1");
-        currentSubTask = new SubTask("2", "2", 1);
+        currentSubTask = new SubTask("2", "2", 1, Duration.ofMinutes(1), LocalDateTime.of(date, time));
 
         currentTask.setId(0);
         currentEpic.setId(1);

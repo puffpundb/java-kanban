@@ -4,14 +4,21 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
+import static managers.FileBackedTaskManagerTest.date;
+import static managers.FileBackedTaskManagerTest.time;
+
 class SubTaskTest {
     public static SubTask subTask0;
     public static SubTask subTask1;
 
     @BeforeAll
     public static void BeforeAll() {
-        subTask0 = new SubTask("0", "0", 0);
-        subTask1 = new SubTask("0", "0", 0);
+        subTask0 = new SubTask("0", "0", 0, Duration.of(1, ChronoUnit.HOURS), LocalDateTime.of(date, time));
+        subTask1 = new SubTask("0", "0", 0, Duration.of(1, ChronoUnit.HOURS), LocalDateTime.of(date, time));
     }
 
     @Test

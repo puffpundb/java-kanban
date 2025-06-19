@@ -11,9 +11,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+
 public class FileBackedTaskManager extends InMemoryTaskManager {
     private final Path fileToSave;
-    private static final String HEADER = "id,type,name,status,description,epic";
+    private static final String HEADER = "id,type,name,status,description,epic,start,end";
+
 
     public FileBackedTaskManager(Path fileToSave) {
         this.fileToSave = fileToSave;
@@ -80,79 +82,92 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
     @Override
     public void createNewTask(Task newTask) {
         super.createNewTask(newTask);
+
         save();
     }
 
     @Override
     public void createNewSubTask(SubTask newSubTask) {
         super.createNewSubTask(newSubTask);
+
         save();
     }
 
     @Override
     public void createNewEpic(Epic newEpic) {
         super.createNewEpic(newEpic);
+
         save();
     }
 
     @Override
     public void updateTask(Task task) {
         super.updateTask(task);
+
         save();
     }
 
     @Override
     public void updateSubTask(SubTask subTask) {
         super.updateSubTask(subTask);
+
         save();
     }
 
     @Override
     public void updateEpic(Epic epic) {
         super.updateEpic(epic);
+
         save();
     }
 
     @Override
     public void deleteTask(Integer id) {
         super.deleteTask(id);
+
         save();
     }
 
     @Override
     public void deleteSubTask(Integer id) {
         super.deleteSubTask(id);
+
         save();
     }
 
     @Override
     public void deleteEpic(Integer id) {
+
         super.deleteEpic(id);
+
         save();
     }
 
     @Override
     public void clearAllTasks() {
         super.clearAllTasks();
+
         save();
     }
 
     @Override
     public void clearAllSubTasks() {
         super.clearAllSubTasks();
+
         save();
     }
 
     @Override
     public void clearAllEpics() {
         super.clearAllEpics();
+
         save();
     }
 
     private void putTaskToSave(Task task) {
         switch (task.getType()) {
             case TASK -> savedTasks.put(task.getId(), task);
-            case EPIC -> savedEpics.put(task.getId(),(Epic) task);
+            case EPIC -> savedEpics.put(task.getId(), (Epic) task);
             case SUBTASK -> {
                 SubTask newSubTask = (SubTask) task;
                 savedSubTasks.put(newSubTask.getId(), newSubTask);
