@@ -256,13 +256,12 @@ public class InMemoryTaskManager implements TaskManager {
             return false;
         }
 
-//        boolean isTimePeriodsIntersected = t1.getStartTime().isBefore(t2.getEndTime()) && t2.getStartTime().isBefore(t1.getEndTime());
-//        boolean isTimePeriodsIntersected = (t1.getStartTime().isBefore(t2.getStartTime()) && t1.getEndTime().isBefore(t2.getEndTime()))
-//                || (t1.getStartTime().isAfter(t2.getStartTime()) && t1.getEndTime().isAfter(t2.getEndTime()))
-//                || (t1.getStartTime().isBefore(t2.getStartTime()) && t1.getEndTime().isAfter(t2.getEndTime()))
-//                || (t1.getStartTime().isAfter(t2.getStartTime()) && t1.getEndTime().isBefore(t2.getEndTime()))
-//                || (t1.getStartTime().isEqual(t2.getStartTime()) && t1.getEndTime().isEqual(t2.getEndTime()));
-        boolean isTimePeriodsIntersected = (t1.getEndTime().isAfter(t2.getStartTime()) && t1.getStartTime().isBefore(t2.getEndTime())) || (t1.getStartTime().isEqual(t2.getStartTime()) && t1.getEndTime().isEqual(t2.getEndTime())) || (t1.getStartTime().isBefore(t2.getStartTime()) && t1.getEndTime().isAfter(t2.getEndTime())) || (t1.getStartTime().isAfter(t2.getStartTime()) && t1.getEndTime().isBefore(t2.getEndTime())) || t1.getStartTime().isBefore(t2.getEndTime()) && t2.getStartTime().isBefore(t1.getEndTime());
+        boolean isTimePeriodsIntersected =
+                (t1.getEndTime().isAfter(t2.getStartTime()) && t1.getStartTime().isBefore(t2.getEndTime()))
+                || (t1.getStartTime().isEqual(t2.getStartTime()) && t1.getEndTime().isEqual(t2.getEndTime()))
+                || (t1.getStartTime().isBefore(t2.getStartTime()) && t1.getEndTime().isAfter(t2.getEndTime()))
+                || (t1.getStartTime().isAfter(t2.getStartTime()) && t1.getEndTime().isBefore(t2.getEndTime()))
+                || t1.getStartTime().isBefore(t2.getEndTime()) && t2.getStartTime().isBefore(t1.getEndTime());
 
         return isTimePeriodsIntersected;
     }
