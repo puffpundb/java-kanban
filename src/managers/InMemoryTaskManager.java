@@ -173,7 +173,7 @@ public class InMemoryTaskManager implements TaskManager {
         int allSubsCount = epic.getSubsId().size();
 
         for (Integer subId : epic.getSubsId()) {
-            SubTask subTask = getSubTaskById(subId);
+            SubTask subTask = savedSubTasks.get(subId);
 
             if (subTask.getStatus() == Status.DONE) {
                 doneCounter++;
