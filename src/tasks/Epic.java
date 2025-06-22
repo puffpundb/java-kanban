@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Epic extends Task {
     private final ArrayList<Integer> subsId;
+    private LocalDateTime endTime;
 
     public Epic(String title, String description) {
         super(title, description, Duration.ZERO, null);
@@ -19,12 +20,21 @@ public class Epic extends Task {
         this.status = epic.getStatus();
         this.id = epic.getId();
         this.subsId = new ArrayList<>(epic.subsId);
-
+        this.endTime = epic.getEndTime();
     }
 
     @Override
     public Epic copy() {
         return new Epic(this);
+    }
+
+    @Override
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
 
     public ArrayList<Integer> getSubsId() {

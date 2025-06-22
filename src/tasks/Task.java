@@ -14,7 +14,6 @@ public class Task implements Comparable<Task> {
     protected Integer id;
     protected Duration duration;
     protected LocalDateTime startTime;
-    protected LocalDateTime endTime;
 
     public Task(String title, String description, Duration duration, LocalDateTime startTime) {
         this.title = title;
@@ -22,8 +21,6 @@ public class Task implements Comparable<Task> {
         this.status = Status.NEW;
         this.duration = duration;
         this.startTime = startTime;
-        if (startTime != null) this.endTime = startTime.plus(duration);
-        else this.endTime = null;
     }
 
     private Task(Task task) {
@@ -33,7 +30,6 @@ public class Task implements Comparable<Task> {
         this.id = task.getId();
         this.duration = task.getDuration();
         this.startTime = task.getStartTime();
-        this.endTime = task.getEndTime();
     }
 
     public Duration getDuration() {
@@ -42,7 +38,6 @@ public class Task implements Comparable<Task> {
 
     public void setDuration(Duration duration) {
         this.duration = duration;
-        this.endTime = startTime.plus(duration);
     }
 
     public LocalDateTime getStartTime() {
@@ -51,16 +46,10 @@ public class Task implements Comparable<Task> {
 
     public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
-        this.endTime = this.startTime.plus(this.duration);
     }
 
     public LocalDateTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-        this.duration = Duration.between(this.startTime, this.endTime);
+        return startTime.plus(duration);
     }
 
     public Task copy() {
@@ -112,7 +101,7 @@ public class Task implements Comparable<Task> {
                 && status == task.status && Objects.equals(id, task.id)
                 && Objects.equals(duration, task.duration)
                 && Objects.equals(startTime, task.startTime)
-                && Objects.equals(endTime, task.endTime);
+                && Objects.equals(this.getEndTime(), task.getEndTime());
     }
 
     @Override
@@ -124,7 +113,7 @@ public class Task implements Comparable<Task> {
                 id,
                 duration,
                 startTime,
-                endTime
+                getEndTime()
         );
     }
 
@@ -142,7 +131,7 @@ public class Task implements Comparable<Task> {
                 ", id=" + id +
                 ", duration=" + duration +
                 ", startTime=" + startTime +
-                ", endTime=" + endTime +
+                ", endTime=" + getEndTime() +
                 '}';
     }
 }

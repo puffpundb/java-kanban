@@ -22,7 +22,7 @@ public class Converter {
                         task.getStatus(),
                         task.getDescription(),
                         task.getStartTime(),
-                        task.getEndTime()
+                        task.getDuration()
                 );
 
             }
@@ -38,7 +38,7 @@ public class Converter {
                         sub.getDescription(),
                         sub.getEpicId(),
                         sub.getStartTime(),
-                        sub.getEndTime()
+                        sub.getDuration()
                 );
 
             }
@@ -63,7 +63,7 @@ public class Converter {
                     if (type.equals(Types.TASK)) newTask = new Task(
                             stringToTask[2],
                             stringToTask[4],
-                            Duration.between(LocalDateTime.parse(stringToTask[5]), LocalDateTime.parse(stringToTask[6])),
+                            Duration.parse(stringToTask[6]),
                             LocalDateTime.parse(stringToTask[5])
                     );
                     else newTask = new Epic(stringToTask[2], stringToTask[4]);
@@ -79,7 +79,7 @@ public class Converter {
                             stringToTask[2],
                             stringToTask[4],
                             Integer.valueOf(stringToTask[5]),
-                            Duration.between(LocalDateTime.parse(stringToTask[6]), LocalDateTime.parse(stringToTask[7])),
+                            Duration.parse(stringToTask[7]),
                             LocalDateTime.parse(stringToTask[6])
                     );
                     newTask.setId(Integer.valueOf(stringToTask[0]));
