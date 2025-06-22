@@ -24,7 +24,6 @@ public class Converter {
                         task.getStartTime(),
                         task.getDuration()
                 );
-
             }
 
             case SUBTASK -> {
@@ -40,7 +39,6 @@ public class Converter {
                         sub.getStartTime(),
                         sub.getDuration()
                 );
-
             }
             default -> throw new ManagerSaveException("Неизвестный тип задачи" + task.getType());
         }
