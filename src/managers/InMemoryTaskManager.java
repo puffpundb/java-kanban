@@ -183,8 +183,7 @@ public class InMemoryTaskManager implements TaskManager {
             }
         }
 
-        epic.setStartTime(searchEpicStartTime(epic));
-        epic.setEndTime(searchEpicEndTime(epic));
+        searchEpicStartEndTime(epic);
         epic.setDuration(Duration.between(epic.getStartTime(), epic.getEndTime()));
 
         if (doneCounter == allSubsCount) {
@@ -198,28 +197,19 @@ public class InMemoryTaskManager implements TaskManager {
         }
     }
 
-    private LocalDateTime searchEpicStartTime(Epic epic) {
+    private void searchEpicStartEndTime(Epic epic) {
         LocalDateTime epicStartTime = savedSubTasks.get(epic.getSubsId().getFirst()).getStartTime();
-
-        for (Integer subId : epic.getSubsId()) {
-            SubTask subTask = savedSubTasks.get(subId);
-
-            if (subTask.getStartTime().isBefore(epicStartTime)) epicStartTime = subTask.getStartTime();
-        }
-
-        return epicStartTime;
-    }
-
-    private LocalDateTime searchEpicEndTime(Epic epic) {
         LocalDateTime epicEndTime = savedSubTasks.get(epic.getSubsId().getFirst()).getEndTime();
 
         for (Integer subId : epic.getSubsId()) {
             SubTask subTask = savedSubTasks.get(subId);
 
+            if (subTask.getStartTime().isBefore(epicStartTime)) epicStartTime = subTask.getStartTime();
             if (subTask.getEndTime().isAfter(epicEndTime)) epicEndTime = subTask.getEndTime();
         }
 
-        return epicEndTime;
+        epic.setStartTime(epicStartTime);
+        epic.setEndTime(epicEndTime);
     }
 
     @Override

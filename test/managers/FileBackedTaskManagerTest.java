@@ -1,5 +1,6 @@
 package managers;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,8 @@ import java.time.LocalDateTime;
 
 
 public class FileBackedTaskManagerTest extends TaskManagerTest<TaskManager> {
+    public File filePath;
+
     @BeforeEach
     public void beforeEach() throws IOException {
         filePath = File.createTempFile("test", ".csv");
@@ -29,6 +32,13 @@ public class FileBackedTaskManagerTest extends TaskManagerTest<TaskManager> {
         taskManager.createNewEpic(new Epic("5", "5"));
         taskManager.createNewSubTask(new SubTask("6", "6", 5, Duration.ofMinutes(1), LocalDateTime.of(2024, 1, 21, 10, 0)));
         taskManager.createNewSubTask(new SubTask("7", "7", 5, Duration.ofMinutes(1), LocalDateTime.of(2025, 1, 21, 10, 0)));
+    }
+
+    @AfterEach
+    public void afterEach() {
+        if (filePath.exists()) {
+            filePath.delete();
+        }
     }
 
     @Test
