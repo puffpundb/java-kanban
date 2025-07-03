@@ -1,0 +1,58 @@
+package server.handlers;
+
+import com.google.gson.Gson;
+import com.sun.net.httpserver.HttpExchange;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+
+public abstract class BaseHttpHandler {
+    protected Gson gson = new Gson();
+
+    public void sendText(HttpExchange exchange, String text) throws IOException {
+        byte[] response = text.getBytes(StandardCharsets.UTF_8);
+
+        exchange.getResponseHeaders().add("Content-Type", "application/json");
+        exchange.sendResponseHeaders(200, response.length);
+        try (OutputStream os = exchange.getResponseBody()) {
+            os.write(response);
+        }
+    }
+
+    public void sendNotFound(HttpExchange exchange) throws IOException {
+        byte[] response = "Объект не найден или был указан некорректный id".getBytes(StandardCharsets.UTF_8);
+
+        exchange.sendResponseHeaders(404, response.length);
+        try (OutputStream os = exchange.getResponseBody()) {
+            os.write(response);
+        }
+    }
+
+    public void sendHasInteractions(HttpExchange exchange) throws IOException {
+        byte[] response = "Задача пересекается с уже существующей".getBytes(StandardCharsets.UTF_8);
+
+        exchange.sendResponseHeaders(406, response.length);
+        try (OutputStream os = exchange.getResponseBody()) {
+            os.write(response);
+        }
+    }
+
+    public void sendIncorrectData(HttpExchange exchange) throws IOException {
+        byte[] response = "Некорректный формат задачи".getBytes(StandardCharsets.UTF_8);
+
+        exchange.sendResponseHeaders(500, response.length);
+        try (OutputStream os = exchange.getResponseBody()) {
+            os.write(response);
+        }
+    }
+
+    public void sendSuccess(HttpExchange exchange, String text) throws IOException {
+        byte[] response = text.getBytes(StandardCharsets.UTF_8);
+
+        exchange.sendResponseHeaders(201, response.length);
+        try (OutputStream os = exchange.getResponseBody()) {
+            os.write(response);
+        }
+    }
+}

@@ -46,6 +46,13 @@ public interface TaskManager {
 
     ArrayList<SubTask> getEpicSubs(Integer id);
 
-    public ArrayList<Task> getHistory();
+    ArrayList<Task> getHistory();
 
+    boolean isTaskIntersectedWithOther(Task newTask);
+
+    boolean containsTask(Integer id);
+
+    boolean containsSub(Integer id);
+
+    boolean containsEpic(Integer id);
 }

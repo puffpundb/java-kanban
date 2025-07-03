@@ -270,7 +270,19 @@ public class InMemoryTaskManager implements TaskManager {
         return isTimePeriodsIntersected;
     }
 
-    private boolean isTaskIntersectedWithOther(Task newTask) {
+    public boolean isTaskIntersectedWithOther(Task newTask) {
         return getPrioritizedTasks().stream().anyMatch(task -> isIntersected(newTask, task));
+    }
+
+    public boolean containsTask(Integer id) {
+        return savedTasks.containsKey(id);
+    }
+
+    public boolean containsSub(Integer id) {
+        return savedSubTasks.containsKey(id);
+    }
+
+    public boolean containsEpic(Integer id) {
+        return savedEpics.containsKey(id);
     }
 }
