@@ -30,7 +30,7 @@ public class HttpTaskServer {
         server.start();
 
         server.createContext("/tasks", new TasksHandler(taskManager));
-        server.createContext("/subtasks" , new SubTasksHandler(taskManager));
+        server.createContext("/subtasks", new SubTasksHandler(taskManager));
         server.createContext("/epics", new EpicsHandler(taskManager));
         server.createContext("/history", new HistoryHandler(taskManager));
         server.createContext("/prioritized", new PrioritizedHandler(taskManager));
@@ -55,7 +55,7 @@ public class HttpTaskServer {
         return fileToSave;
     }
 
-    public TaskManager getTaskManagerForTest(){
+    public TaskManager getTaskManagerForTest() {
         return taskManager;
     }
 

@@ -4,31 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69bdb942-3130-4c8b-9e8c-fa353736ad11" name="Changes" comment="Поправлен кодстайл в конверторе">
-      <change afterPath="$PROJECT_DIR$/src/server/handlers/adapters/DurationAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/handlers/adapters/LocalDateTimeAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/server/HttpMethodDeleteTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/server/HttpMethodGetTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/server/HttpMethodPostTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/server/HttpTaskServerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-kanban.iml" beforeDir="false" afterPath="$PROJECT_DIR$/java-kanban.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/FileBackedTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/FileBackedTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/HistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/HistoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/InMemoryHistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/InMemoryHistoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/InMemoryTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/TaskManager.java" afterDir="false" />
+    <list default="true" id="69bdb942-3130-4c8b-9e8c-fa353736ad11" name="Changes" comment="Реализовано API для менеджера">
       <change beforePath="$PROJECT_DIR$/src/server/HttpTaskServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/HttpTaskServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/handlers/BaseHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/BaseHttpHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/handlers/EpicsHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/EpicsHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/handlers/HistoryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/HistoryHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/handlers/PrioritizedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/PrioritizedHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/handlers/SubTasksHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/SubTasksHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/handlers/TasksHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/TasksHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/SubTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Task.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +64,7 @@
     "Application.HttpTaskServer.executor": "Run",
     "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "true",
-    "JUnit.All in java-kanban.executor": "Coverage",
+    "JUnit.All in java-kanban.executor": "Run",
     "JUnit.EpicTest.executor": "Run",
     "JUnit.FileBackedTaskManagerTest and 1 more.executor": "Run",
     "JUnit.FileBackedTaskManagerTest,shouldTaskManagerRightCalculateEpicDuration and 1 more.executor": "Run",
@@ -455,7 +432,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750356010511</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Реализовано API для менеджера">
+      <option name="closed" value="true" />
+      <created>1751636786911</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1751636786911</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -501,7 +486,8 @@
     <MESSAGE value="Добавлены продолжительность и даты задач.&#10;Добавлен список задач по приоритету(по времени старта).&#10;Изменены циклы на стримы(где было по силам).&#10;Создан абстрактный класс для тестов.&#10;Созданы тесты для нового функционала." />
     <MESSAGE value="Удалены лишние импорты.&#10;Почищен проект от закомментированного кода." />
     <MESSAGE value="Поправлен кодстайл в конверторе" />
-    <option name="LAST_COMMIT_MESSAGE" value="Поправлен кодстайл в конверторе" />
+    <MESSAGE value="Реализовано API для менеджера" />
+    <option name="LAST_COMMIT_MESSAGE" value="Реализовано API для менеджера" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
