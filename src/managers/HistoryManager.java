@@ -10,4 +10,8 @@ public interface HistoryManager {
     ArrayList<Task> getHistory();
 
     void remove(Integer id);
+
+    void clearHistory();
+
+    boolean isContainsInHistory(Integer id);
 }

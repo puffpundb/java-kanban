@@ -166,15 +166,18 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
 
     private void putTaskToSave(Task task) {
         switch (task.getType()) {
-            case TASK -> savedTasks.put(task.getId(), task);
+            case TASK -> {
+                savedTasks.put(task.getId(), task);
+                prioritizedTasks.add(task);
+            }
             case EPIC -> savedEpics.put(task.getId(), (Epic) task);
             case SUBTASK -> {
                 SubTask newSubTask = (SubTask) task;
                 savedSubTasks.put(newSubTask.getId(), newSubTask);
                 savedEpics.get(newSubTask.getEpicId()).putSubsId(newSubTask.getId());
                 updateEpicStatus(newSubTask.getEpicId());
+                prioritizedTasks.add(task);
             }
-
         }
     }
 }

@@ -5,6 +5,7 @@ import tasks.SubTask;
 import tasks.Task;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface TaskManager {
 
@@ -48,11 +49,19 @@ public interface TaskManager {
 
     ArrayList<Task> getHistory();
 
+    List<Task> getPrioritizedTasks();
+
+    void removeFromHistory(Integer id);
+
+    void clearHistory();
+
     boolean isTaskIntersectedWithOther(Task newTask);
 
-    boolean containsTask(Integer id);
+    boolean isContainsTask(Integer id);
 
-    boolean containsSub(Integer id);
+    boolean isContainsSub(Integer id);
 
-    boolean containsEpic(Integer id);
+    boolean isContainsEpic(Integer id);
+
+    boolean isContainsInHistory(Integer id);
 }
