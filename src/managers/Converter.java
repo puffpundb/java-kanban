@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class Converter {
 
     public static String taskToString(Task task) {
-        switch (task.getType()) { //В ТЗ сказано записывать duration в файл, но мне показалось, что безопаснее его высчитать из start и end
+        switch (task.getType()) {
             case TASK, EPIC -> {
                 return String.format("%d,%s,%s,%s,%s,%s,%s",
                         task.getId(),
