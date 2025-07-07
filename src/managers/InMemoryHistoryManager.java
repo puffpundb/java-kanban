@@ -53,6 +53,13 @@ public class InMemoryHistoryManager implements HistoryManager {
     }
 
     @Override
+    public void clearHistory() {
+        viewHistory.clear();
+        head = null;
+        tail = null;
+    }
+
+    @Override
     public void remove(Integer id) {
         if (!viewHistory.containsKey(id)) return;
 
@@ -79,6 +86,11 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
 
         viewHistory.remove(id);
+    }
+
+    @Override
+    public boolean isContainsInHistory(Integer id) {
+        return viewHistory.containsKey(id);
     }
 
     private static class Node {

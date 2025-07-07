@@ -31,6 +31,21 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
+    public void removeFromHistory(Integer id) {
+        historyManager.remove(id);
+    }
+
+    @Override
+    public void clearHistory() {
+        historyManager.clearHistory();
+    }
+
+    @Override
+    public boolean isContainsInHistory(Integer id) {
+        return historyManager.isContainsInHistory(id);
+    }
+
+    @Override
     public ArrayList<Task> getAllTasks() {
         return new ArrayList<>(savedTasks.values());
     }
@@ -265,7 +280,8 @@ public class InMemoryTaskManager implements TaskManager {
     private boolean isIntersected(Task t1, Task t2) {
         if (t1.getStartTime() == null || t2.getStartTime() == null) return false;
 
-        boolean isTimePeriodsIntersected = t1.getEndTime().isAfter(t2.getStartTime()) && t1.getStartTime().isBefore(t2.getEndTime());
+        boolean isTimePeriodsIntersected = t1.getEndTime().isAfter(t2.getStartTime()) &&
+                t1.getStartTime().isBefore(t2.getEndTime());
 
         return isTimePeriodsIntersected;
     }
@@ -274,15 +290,15 @@ public class InMemoryTaskManager implements TaskManager {
         return getPrioritizedTasks().stream().anyMatch(task -> isIntersected(newTask, task));
     }
 
-    public boolean containsTask(Integer id) {
+    public boolean isContainsTask(Integer id) {
         return savedTasks.containsKey(id);
     }
 
-    public boolean containsSub(Integer id) {
+    public boolean isContainsSub(Integer id) {
         return savedSubTasks.containsKey(id);
     }
 
-    public boolean containsEpic(Integer id) {
+    public boolean isContainsEpic(Integer id) {
         return savedEpics.containsKey(id);
     }
 }

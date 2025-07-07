@@ -4,17 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69bdb942-3130-4c8b-9e8c-fa353736ad11" name="Changes" comment="Поправлен кодстайл в конверторе">
-      <change afterPath="$PROJECT_DIR$/src/server/HttpTaskServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/handlers/BaseHttpHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/handlers/EpicsHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/handlers/HistoryHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/handlers/HttpMethods.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/handlers/PrioritizedHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/handlers/SubTasksHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/server/handlers/TasksHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/InMemoryTaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/managers/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/managers/TaskManager.java" afterDir="false" />
+    <list default="true" id="69bdb942-3130-4c8b-9e8c-fa353736ad11" name="Changes" comment="Пуш мейн ветки">
+      <change afterPath="$PROJECT_DIR$/test/server/EpicsHandlerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/server/HistoryHandlerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/server/PrioritizedHandlerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/server/SubTasksHandlerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/server/TasksHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/HttpTaskServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/HttpTaskServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handlers/BaseHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/BaseHttpHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handlers/EpicsHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/EpicsHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handlers/HistoryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/HistoryHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handlers/PrioritizedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/PrioritizedHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handlers/SubTasksHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/SubTasksHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handlers/TasksHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/TasksHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/SubTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/server/HttpMethodDeleteTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/server/HttpMethodGetTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/server/HttpMethodPostTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +36,8 @@
       <list>
         <option value="Interface" />
         <option value="Exception" />
-        <option value="JUnit5 Test Class" />
         <option value="Enum" />
+        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
@@ -42,18 +52,18 @@
     <option name="RESET_MODE" value="HARD" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "puffpundb"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;puffpundb&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:puffpundb/java-kanban.git",
-    "accountId": "6bd01b7d-a4a9-4e18-a27d-cc271e9248f2"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:puffpundb/java-kanban.git&quot;,
+    &quot;accountId&quot;: &quot;6bd01b7d-a4a9-4e18-a27d-cc271e9248f2&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -70,10 +80,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.HttpTaskServer.executor": "Run",
     "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "true",
-    "JUnit.All in java-kanban.executor": "Coverage",
+    "JUnit.All in java-kanban.executor": "Run",
     "JUnit.EpicTest.executor": "Run",
+    "JUnit.EpicsHandlerTest.executor": "Run",
     "JUnit.FileBackedTaskManagerTest and 1 more.executor": "Run",
     "JUnit.FileBackedTaskManagerTest,shouldTaskManagerRightCalculateEpicDuration and 1 more.executor": "Run",
     "JUnit.FileBackedTaskManagerTest,shouldTaskManagerRightCalculateEpicStartTime and 1 more.executor": "Run",
@@ -97,6 +109,7 @@
     "JUnit.FileBackedTaskManagerTest.shouldTaskManagerRightUpdateTask.executor": "Run",
     "JUnit.FileBackedTaskManagerTest.shouldTaskRightLoadFromFile.executor": "Run",
     "JUnit.FileBackedTaskManagerTest.shouldTaskWithOneIdDontGiveAConflict.executor": "Debug",
+    "JUnit.HistoryHandlerTest.executor": "Run",
     "JUnit.HistoryManagerTest.executor": "Run",
     "JUnit.HistoryManagerTest.shouldHistoryManagerReturnRightHistoryList.executor": "Run",
     "JUnit.HistoryManagerTest.shouldHistoryManagerRightRemoveFromEmptyHistory.executor": "Run",
@@ -106,15 +119,26 @@
     "JUnit.HistoryManagerTest.shouldHistoryManagerRightRemoveOnlyOneTaskFromHistory.executor": "Run",
     "JUnit.HistoryManagerTest.shouldHistoryManagerRightRemoveTail.executor": "Run",
     "JUnit.HistoryManagerTest.shouldHistorySaveEpicCopy.executor": "Debug",
+    "JUnit.HttpMethodDeleteTest.shouldServerRightDeleteTask.executor": "Run",
+    "JUnit.HttpMethodGetTest.shouldServerRightGetHistory.executor": "Run",
+    "JUnit.HttpMethodPostTest.shouldServerRightPostEpic.executor": "Run",
+    "JUnit.HttpMethodPostTest.shouldServerRightPostEpicAndSub.executor": "Run",
+    "JUnit.HttpMethodPostTest.shouldServerRightPostSub.executor": "Run",
+    "JUnit.HttpMethodPostTest.shouldServerRightUpdateEpic.executor": "Run",
+    "JUnit.HttpMethodPostTest.shouldServerRightUpdateSub.executor": "Run",
+    "JUnit.HttpMethodPostTest.shouldServerRightUpdateTask.executor": "Run",
     "JUnit.InMemoryTaskManagerTest.executor": "Run",
     "JUnit.MainTest.executor": "Run",
     "JUnit.ManagersTest.executor": "Run",
+    "JUnit.PrioritizedHandlerTest.executor": "Run",
     "JUnit.SubTaskTest.executor": "Run",
+    "JUnit.SubTasksHandlerTest.executor": "Run",
     "JUnit.TaskManagerTest.executor": "Run",
     "JUnit.TaskManagerTest.shouldTaskManagerGetAllTask.executor": "Run",
     "JUnit.TaskManagerTest.shouldTaskManagerGetAllTaskSubTaskEpicAndAllIsItById.executor": "Run",
     "JUnit.TaskManagerTest.shouldTaskManagerRightUpdateEpic.executor": "Run",
     "JUnit.TaskTest.executor": "Run",
+    "JUnit.TasksHandlerTest.executor": "Run",
     "JUnit.managers in java-kanban.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -123,7 +147,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "#6 on sprint__8-solution-time-and-duration",
+    "git-widget-placeholder": "#7 on sprint__9-solution-http-api",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/downloads/gson-2.13.1.jar",
@@ -141,9 +165,11 @@
       <recent name="manager" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="server" />
       <recent name="tasks" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="server.handlers" />
       <recent name="managers" />
       <recent name="tasks" />
       <recent name="" />
@@ -158,86 +184,73 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FileBackedTaskManagerTest and 1 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HistoryHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="managers.*" />
+          <option name="PATTERN" value="server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="managers" />
-      <option name="MAIN_CLASS_NAME" value="managers.TaskManagerTest" />
-      <option name="TEST_OBJECT" value="pattern" />
-      <patterns>
-        <pattern testClass="managers.FileBackedTaskManagerTest" />
-        <pattern testClass="managers.InMemoryTaskManagerTest" />
-      </patterns>
+      <option name="PACKAGE_NAME" value="server" />
+      <option name="MAIN_CLASS_NAME" value="server.HistoryHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FileBackedTaskManagerTest,shouldTaskManagerRightCalculateEpicDuration and 1 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PrioritizedHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="managers.*" />
+          <option name="PATTERN" value="server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="managers" />
-      <option name="MAIN_CLASS_NAME" value="managers.TaskManagerTest" />
-      <option name="METHOD_NAME" value="shouldTaskManagerRightCalculateEpicDuration" />
-      <option name="TEST_OBJECT" value="pattern" />
-      <patterns>
-        <pattern testClass="managers.FileBackedTaskManagerTest,shouldTaskManagerRightCalculateEpicDuration" />
-        <pattern testClass="managers.InMemoryTaskManagerTest,shouldTaskManagerRightCalculateEpicDuration" />
-      </patterns>
+      <option name="PACKAGE_NAME" value="server" />
+      <option name="MAIN_CLASS_NAME" value="server.PrioritizedHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FileBackedTaskManagerTest,shouldTaskManagerRightCalculateEpicStartTime and 1 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SubTasksHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="managers.*" />
+          <option name="PATTERN" value="server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="managers" />
-      <option name="MAIN_CLASS_NAME" value="managers.TaskManagerTest" />
-      <option name="METHOD_NAME" value="shouldTaskManagerRightCalculateEpicStartTime" />
-      <option name="TEST_OBJECT" value="pattern" />
-      <patterns>
-        <pattern testClass="managers.FileBackedTaskManagerTest,shouldTaskManagerRightCalculateEpicStartTime" />
-        <pattern testClass="managers.InMemoryTaskManagerTest,shouldTaskManagerRightCalculateEpicStartTime" />
-      </patterns>
+      <option name="PACKAGE_NAME" value="server" />
+      <option name="MAIN_CLASS_NAME" value="server.SubTasksHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="managers in java-kanban" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TasksHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="managers.*" />
+          <option name="PATTERN" value="server.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="managers" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="PACKAGE_NAME" value="server" />
+      <option name="MAIN_CLASS_NAME" value="server.TasksHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.managers in java-kanban" />
-        <item itemvalue="JUnit.FileBackedTaskManagerTest,shouldTaskManagerRightCalculateEpicStartTime and 1 more" />
-        <item itemvalue="JUnit.FileBackedTaskManagerTest,shouldTaskManagerRightCalculateEpicDuration and 1 more" />
-        <item itemvalue="JUnit.FileBackedTaskManagerTest and 1 more" />
         <item itemvalue="JUnit.All in java-kanban" />
+        <item itemvalue="JUnit.PrioritizedHandlerTest" />
+        <item itemvalue="JUnit.HistoryHandlerTest" />
+        <item itemvalue="JUnit.SubTasksHandlerTest" />
+        <item itemvalue="JUnit.TasksHandlerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -426,7 +439,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750356010511</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Пуш мейн ветки">
+      <option name="closed" value="true" />
+      <created>1751708078589</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1751708078589</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -472,7 +493,15 @@
     <MESSAGE value="Добавлены продолжительность и даты задач.&#10;Добавлен список задач по приоритету(по времени старта).&#10;Изменены циклы на стримы(где было по силам).&#10;Создан абстрактный класс для тестов.&#10;Созданы тесты для нового функционала." />
     <MESSAGE value="Удалены лишние импорты.&#10;Почищен проект от закомментированного кода." />
     <MESSAGE value="Поправлен кодстайл в конверторе" />
-    <option name="LAST_COMMIT_MESSAGE" value="Поправлен кодстайл в конверторе" />
+    <MESSAGE value="Пуш мейн ветки" />
+    <option name="LAST_COMMIT_MESSAGE" value="Пуш мейн ветки" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint log-stack="true" type="java-exception" />
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/java_kanban$MainTest.ic" NAME="MainTest Coverage Results" MODIFIED="1745777583166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />

@@ -1,14 +1,23 @@
 package server.handlers;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import server.handlers.adapters.DurationAdapter;
+import server.handlers.adapters.LocalDateTimeAdapter;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
-public abstract class BaseHttpHandler {
-    protected Gson gson = new Gson();
+public abstract class BaseHttpHandler implements HttpHandler {
+    protected Gson gson = new GsonBuilder()
+            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+            .registerTypeAdapter(Duration.class, new DurationAdapter())
+            .create();
 
     public void sendText(HttpExchange exchange, String text) throws IOException {
         byte[] response = text.getBytes(StandardCharsets.UTF_8);
@@ -51,6 +60,15 @@ public abstract class BaseHttpHandler {
         byte[] response = text.getBytes(StandardCharsets.UTF_8);
 
         exchange.sendResponseHeaders(201, response.length);
+        try (OutputStream os = exchange.getResponseBody()) {
+            os.write(response);
+        }
+    }
+
+    public void sendIncorrectMethod(HttpExchange exchange) throws IOException {
+        byte[] response = "Некорректный http-метод".getBytes(StandardCharsets.UTF_8);
+
+        exchange.sendResponseHeaders(500, response.length);
         try (OutputStream os = exchange.getResponseBody()) {
             os.write(response);
         }

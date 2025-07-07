@@ -13,7 +13,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class TasksHandler extends BaseHttpHandler implements HttpHandler {
+public class TasksHandler extends BaseHttpHandler {
     private final TaskManager taskManager;
 
     public TasksHandler(TaskManager taskManager) {
@@ -30,13 +30,12 @@ public class TasksHandler extends BaseHttpHandler implements HttpHandler {
             case HttpMethods.GET -> {
                 if (path.length == 2) {
                     List<Task> currentTaskList = taskManager.getAllTasks();
-
                     sendText(exchange, gson.toJson(currentTaskList));
                 } else {
                     try {
                         idFromRequest = Integer.parseInt(path[2]);
 
-                        if (taskManager.containsTask(idFromRequest)) {
+                        if (taskManager.isContainsTask(idFromRequest)) {
                             Task currentTask = taskManager.getTaskById(idFromRequest);
 
                             sendText(exchange, gson.toJson(currentTask));
@@ -82,24 +81,47 @@ public class TasksHandler extends BaseHttpHandler implements HttpHandler {
                         sendHasInteractions(exchange);
                     }
                 } else {
-                    idFromRequest = Integer.parseInt(path[2]);
+                    try {
+                        idFromRequest = Integer.parseInt(path[2]);
 
-                    if (taskManager.containsTask(idFromRequest)) {
-                        if (!taskManager.isTaskIntersectedWithOther(newTask)) {
-                            taskManager.updateTask(newTask);
+                        if (taskManager.isContainsTask(idFromRequest)) {
+                            if (!taskManager.isTaskIntersectedWithOther(newTask)) {
+                                taskManager.updateTask(newTask);
 
-                            sendSuccess(exchange, "Задача успешно обновлена");
+                                sendSuccess(exchange, "Задача успешно обновлена");
+                            } else {
+                                sendHasInteractions(exchange);
+                            }
                         } else {
-                            sendHasInteractions(exchange);
+                            sendNotFound(exchange);
                         }
-                    } else {
+                    } catch (NumberFormatException e) {
                         sendNotFound(exchange);
                     }
                 }
             }
             case HttpMethods.DELETE -> {
-                idFromRequest = Integer.parseInt(path[2]);
+                if (path.length == 2) {
+                    taskManager.clearAllTasks();
+
+                    sendText(exchange, "Все задачи успешно удалены");
+                } else {
+                    try {
+                        idFromRequest = Integer.parseInt(path[2]);
+
+                        if (taskManager.isContainsTask(idFromRequest)) {
+                            taskManager.deleteTask(idFromRequest);
+
+                            sendText(exchange, "Задача успешно удалена");
+                        } else {
+                            sendNotFound(exchange);
+                        }
+                    } catch (NumberFormatException e) {
+                        sendNotFound(exchange);
+                    }
+                }
             }
+            default -> sendIncorrectMethod(exchange);
         }
     }
 }
