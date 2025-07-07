@@ -7,12 +7,13 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import managers.TaskManager;
 import tasks.Epic;
+import tasks.SubTask;
 import tasks.Task;
 
 import java.io.IOException;
 import java.util.List;
 
-public class EpicsHandler extends BaseHttpHandler implements HttpHandler {
+public class EpicsHandler extends BaseHttpHandler {
     private final TaskManager taskManager;
 
     public EpicsHandler(TaskManager taskManager) {
@@ -50,12 +51,7 @@ public class EpicsHandler extends BaseHttpHandler implements HttpHandler {
                         idFromRequest = Integer.parseInt(path[2]);
 
                         if (taskManager.isContainsEpic(idFromRequest)) {
-                            List<Integer> epicSubsIdList = taskManager.getEpicById(idFromRequest).getSubsId();
-
-                            List<Task> epicSubsList = taskManager.getAllSubTasks()
-                                    .stream()
-                                    .filter(task -> epicSubsIdList.contains(task.getId()))
-                                    .toList();
+                            List<SubTask> epicSubsList = taskManager.getEpicSubs(idFromRequest);
 
                             sendText(exchange, gson.toJson(epicSubsList));
                         } else {

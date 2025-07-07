@@ -14,7 +14,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class SubTasksHandler extends BaseHttpHandler implements HttpHandler {
+public class SubTasksHandler extends BaseHttpHandler {
     private final TaskManager taskManager;
 
     public SubTasksHandler(TaskManager taskManager) {

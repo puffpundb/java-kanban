@@ -4,8 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69bdb942-3130-4c8b-9e8c-fa353736ad11" name="Changes" comment="Реализовано API для менеджера">
+    <list default="true" id="69bdb942-3130-4c8b-9e8c-fa353736ad11" name="Changes" comment="Пуш мейн ветки">
+      <change afterPath="$PROJECT_DIR$/test/server/EpicsHandlerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/server/HistoryHandlerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/server/PrioritizedHandlerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/server/SubTasksHandlerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/server/TasksHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/server/HttpTaskServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/HttpTaskServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handlers/BaseHttpHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/BaseHttpHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handlers/EpicsHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/EpicsHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handlers/HistoryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/HistoryHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handlers/PrioritizedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/PrioritizedHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handlers/SubTasksHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/SubTasksHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/handlers/TasksHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/handlers/TasksHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Epic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/SubTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/SubTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/server/HttpMethodDeleteTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/server/HttpMethodGetTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/server/HttpMethodPostTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +85,7 @@
     "Downloaded.Files.Path.Enabled": "true",
     "JUnit.All in java-kanban.executor": "Run",
     "JUnit.EpicTest.executor": "Run",
+    "JUnit.EpicsHandlerTest.executor": "Run",
     "JUnit.FileBackedTaskManagerTest and 1 more.executor": "Run",
     "JUnit.FileBackedTaskManagerTest,shouldTaskManagerRightCalculateEpicDuration and 1 more.executor": "Run",
     "JUnit.FileBackedTaskManagerTest,shouldTaskManagerRightCalculateEpicStartTime and 1 more.executor": "Run",
@@ -89,6 +109,7 @@
     "JUnit.FileBackedTaskManagerTest.shouldTaskManagerRightUpdateTask.executor": "Run",
     "JUnit.FileBackedTaskManagerTest.shouldTaskRightLoadFromFile.executor": "Run",
     "JUnit.FileBackedTaskManagerTest.shouldTaskWithOneIdDontGiveAConflict.executor": "Debug",
+    "JUnit.HistoryHandlerTest.executor": "Run",
     "JUnit.HistoryManagerTest.executor": "Run",
     "JUnit.HistoryManagerTest.shouldHistoryManagerReturnRightHistoryList.executor": "Run",
     "JUnit.HistoryManagerTest.shouldHistoryManagerRightRemoveFromEmptyHistory.executor": "Run",
@@ -98,38 +119,27 @@
     "JUnit.HistoryManagerTest.shouldHistoryManagerRightRemoveOnlyOneTaskFromHistory.executor": "Run",
     "JUnit.HistoryManagerTest.shouldHistoryManagerRightRemoveTail.executor": "Run",
     "JUnit.HistoryManagerTest.shouldHistorySaveEpicCopy.executor": "Debug",
-    "JUnit.HttpMethodDeleteTest.shouldServerRightClearHistory.executor": "Run",
-    "JUnit.HttpMethodDeleteTest.shouldServerRightDeleteEpic.executor": "Run",
-    "JUnit.HttpMethodDeleteTest.shouldServerRightDeleteSub.executor": "Run",
     "JUnit.HttpMethodDeleteTest.shouldServerRightDeleteTask.executor": "Run",
-    "JUnit.HttpMethodDeleteTest.shouldServerRightDeleteTaskFromHistory.executor": "Run",
-    "JUnit.HttpMethodGetTest.executor": "Run",
-    "JUnit.HttpMethodGetTest.shouldServerRightGetEpic.executor": "Run",
-    "JUnit.HttpMethodGetTest.shouldServerRightGetEpicSubs.executor": "Run",
-    "JUnit.HttpMethodGetTest.shouldServerRightGetEpicsArray.executor": "Run",
     "JUnit.HttpMethodGetTest.shouldServerRightGetHistory.executor": "Run",
-    "JUnit.HttpMethodGetTest.shouldServerRightGetPrioritized.executor": "Run",
-    "JUnit.HttpMethodGetTest.shouldServerRightGetSubTask.executor": "Run",
-    "JUnit.HttpMethodGetTest.shouldServerRightGetSubsArray.executor": "Run",
-    "JUnit.HttpMethodGetTest.shouldServerRightGetSubssArray.executor": "Run",
-    "JUnit.HttpMethodGetTest.shouldServerRightGetTasks.executor": "Run",
-    "JUnit.HttpMethodGetTest.shouldServerRightGetTasksArray.executor": "Run",
+    "JUnit.HttpMethodPostTest.shouldServerRightPostEpic.executor": "Run",
     "JUnit.HttpMethodPostTest.shouldServerRightPostEpicAndSub.executor": "Run",
-    "JUnit.HttpMethodPostTest.shouldServerRightPostTask.executor": "Run",
+    "JUnit.HttpMethodPostTest.shouldServerRightPostSub.executor": "Run",
     "JUnit.HttpMethodPostTest.shouldServerRightUpdateEpic.executor": "Run",
     "JUnit.HttpMethodPostTest.shouldServerRightUpdateSub.executor": "Run",
     "JUnit.HttpMethodPostTest.shouldServerRightUpdateTask.executor": "Run",
     "JUnit.InMemoryTaskManagerTest.executor": "Run",
     "JUnit.MainTest.executor": "Run",
     "JUnit.ManagersTest.executor": "Run",
+    "JUnit.PrioritizedHandlerTest.executor": "Run",
     "JUnit.SubTaskTest.executor": "Run",
+    "JUnit.SubTasksHandlerTest.executor": "Run",
     "JUnit.TaskManagerTest.executor": "Run",
     "JUnit.TaskManagerTest.shouldTaskManagerGetAllTask.executor": "Run",
     "JUnit.TaskManagerTest.shouldTaskManagerGetAllTaskSubTaskEpicAndAllIsItById.executor": "Run",
     "JUnit.TaskManagerTest.shouldTaskManagerRightUpdateEpic.executor": "Run",
     "JUnit.TaskTest.executor": "Run",
+    "JUnit.TasksHandlerTest.executor": "Run",
     "JUnit.managers in java-kanban.executor": "Run",
-    "JUnit.server in java-kanban.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -137,14 +147,14 @@
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "sprint__9-solution-http-api",
+    "git-widget-placeholder": "#7 on sprint__9-solution-http-api",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/downloads/gson-2.13.1.jar",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -155,10 +165,11 @@
       <recent name="manager" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="server" />
       <recent name="tasks" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="server" />
+      <recent name="server.handlers" />
       <recent name="managers" />
       <recent name="tasks" />
       <recent name="" />
@@ -173,7 +184,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HttpMethodDeleteTest.shouldServerRightClearHistory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="HistoryHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <extension name="coverage">
         <pattern>
@@ -182,14 +193,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="server" />
-      <option name="MAIN_CLASS_NAME" value="server.HttpMethodDeleteTest" />
-      <option name="METHOD_NAME" value="shouldServerRightClearHistory" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="server.HistoryHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HttpMethodDeleteTest.shouldServerRightDeleteEpic" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PrioritizedHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <extension name="coverage">
         <pattern>
@@ -198,14 +208,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="server" />
-      <option name="MAIN_CLASS_NAME" value="server.HttpMethodDeleteTest" />
-      <option name="METHOD_NAME" value="shouldServerRightDeleteEpic" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="server.PrioritizedHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HttpMethodDeleteTest.shouldServerRightDeleteSub" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SubTasksHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <extension name="coverage">
         <pattern>
@@ -214,14 +223,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="server" />
-      <option name="MAIN_CLASS_NAME" value="server.HttpMethodDeleteTest" />
-      <option name="METHOD_NAME" value="shouldServerRightDeleteSub" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="server.SubTasksHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HttpMethodDeleteTest.shouldServerRightDeleteTaskFromHistory" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TasksHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <extension name="coverage">
         <pattern>
@@ -230,9 +238,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="server" />
-      <option name="MAIN_CLASS_NAME" value="server.HttpMethodDeleteTest" />
-      <option name="METHOD_NAME" value="shouldServerRightDeleteTaskFromHistory" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="server.TasksHandlerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -240,10 +247,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in java-kanban" />
-        <item itemvalue="JUnit.HttpMethodDeleteTest.shouldServerRightClearHistory" />
-        <item itemvalue="JUnit.HttpMethodDeleteTest.shouldServerRightDeleteTaskFromHistory" />
-        <item itemvalue="JUnit.HttpMethodDeleteTest.shouldServerRightDeleteEpic" />
-        <item itemvalue="JUnit.HttpMethodDeleteTest.shouldServerRightDeleteSub" />
+        <item itemvalue="JUnit.PrioritizedHandlerTest" />
+        <item itemvalue="JUnit.HistoryHandlerTest" />
+        <item itemvalue="JUnit.SubTasksHandlerTest" />
+        <item itemvalue="JUnit.TasksHandlerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -432,13 +439,13 @@
       <option name="project" value="LOCAL" />
       <updated>1750356010511</updated>
     </task>
-    <task id="LOCAL-00023" summary="Реализовано API для менеджера">
+    <task id="LOCAL-00023" summary="Пуш мейн ветки">
       <option name="closed" value="true" />
-      <created>1751636786911</created>
+      <created>1751708078589</created>
       <option name="number" value="00023" />
       <option name="presentableId" value="LOCAL-00023" />
       <option name="project" value="LOCAL" />
-      <updated>1751636786911</updated>
+      <updated>1751708078589</updated>
     </task>
     <option name="localTasksCounter" value="24" />
     <servers />
@@ -486,8 +493,8 @@
     <MESSAGE value="Добавлены продолжительность и даты задач.&#10;Добавлен список задач по приоритету(по времени старта).&#10;Изменены циклы на стримы(где было по силам).&#10;Создан абстрактный класс для тестов.&#10;Созданы тесты для нового функционала." />
     <MESSAGE value="Удалены лишние импорты.&#10;Почищен проект от закомментированного кода." />
     <MESSAGE value="Поправлен кодстайл в конверторе" />
-    <MESSAGE value="Реализовано API для менеджера" />
-    <option name="LAST_COMMIT_MESSAGE" value="Реализовано API для менеджера" />
+    <MESSAGE value="Пуш мейн ветки" />
+    <option name="LAST_COMMIT_MESSAGE" value="Пуш мейн ветки" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

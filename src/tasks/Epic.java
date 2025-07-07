@@ -13,7 +13,6 @@ public class Epic extends Task {
     public Epic(String title, String description) {
         super(title, description, Duration.ZERO, null);
         this.subsId = new ArrayList<>();
-        this.type = Types.EPIC;
     }
 
     private Epic(Epic epic) {

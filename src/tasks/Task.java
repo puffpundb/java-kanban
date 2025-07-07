@@ -14,7 +14,6 @@ public class Task implements Comparable<Task> {
     protected Integer id;
     protected Duration duration;
     protected LocalDateTime startTime;
-    protected Types type;
 
     public Task(String title, String description, Duration duration, LocalDateTime startTime) {
         this.title = title;
@@ -22,7 +21,6 @@ public class Task implements Comparable<Task> {
         this.status = Status.NEW;
         this.duration = duration;
         this.startTime = startTime;
-        this.type = Types.TASK;
     }
 
     private Task(Task task) {
@@ -91,11 +89,7 @@ public class Task implements Comparable<Task> {
     }
 
     public Types getType() {
-        return type;
-    }
-
-    public void setType(Types type) {
-        this.type = type;
+        return Types.TASK;
     }
 
     @Override

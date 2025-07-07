@@ -16,16 +16,10 @@ import java.util.Scanner;
 public class HttpTaskServer {
     private final HttpServer server;
     private final TaskManager taskManager;
-    private static final Path saveDirectory = Paths.get("saves");
-    private static final Path fileToSave = saveDirectory.resolve("saveFile" + ".csv");
 
-    public HttpTaskServer(TaskManager taskManager) {
+    public HttpTaskServer(TaskManager taskManager) throws IOException {
         this.taskManager = taskManager;
-        try {
-            server = HttpServer.create(new InetSocketAddress(8080), 0);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        server = HttpServer.create(new InetSocketAddress(8080), 0);
 
         server.start();
 
@@ -40,30 +34,12 @@ public class HttpTaskServer {
         server.stop(delay);
     }
 
-    private static boolean isFileExist() {
-        return Files.exists(saveDirectory) && Files.exists(fileToSave);
-    }
-
-    private static Path createFile() {
-        try {
-            if (!Files.exists(saveDirectory)) Files.createDirectories(saveDirectory);
-            if (!Files.exists(fileToSave)) Files.createFile(fileToSave);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        return fileToSave;
-    }
-
     public TaskManager getTaskManagerForTest() {
         return taskManager;
     }
 
-    public static void main(String[] args) {
-        HttpTaskServer taskServer;
-
-        if (isFileExist()) taskServer = new HttpTaskServer(FileBackedTaskManager.loadFromFile(fileToSave));
-        else taskServer = new HttpTaskServer(Managers.getFileBackedTaskManager(createFile()));
+    public static void main(String[] args) throws IOException {
+        HttpTaskServer taskServer = new HttpTaskServer(Managers.getDefault());
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("e - for server stop");
